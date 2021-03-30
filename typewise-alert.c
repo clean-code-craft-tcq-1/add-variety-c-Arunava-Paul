@@ -15,21 +15,16 @@ BreachType classifyTemperatureBreach(
     CoolingType coolingType, double temperatureInC) {
   int lowerLimit = 0;
   int upperLimit = 0;
-  switch(coolingType) {
-    case PASSIVE_COOLING:
-      lowerLimit = 0;
-      upperLimit = 35;
-      break;
-    case HI_ACTIVE_COOLING:
-      lowerLimit = 0;
-      upperLimit = 45;
-      break;
-    case MED_ACTIVE_COOLING:
-      lowerLimit = 0;
-      upperLimit = 40;
-      break;
+  int i,idx;
+  const CoolingType_TempLimit_st CtypeTL[MAX_COUNT_COOLING_TYPE]={{PASSIVE_COOLING,0,35},{HI_ACTIVE_COOLING,0,45},{MED_ACTIVE_COOLING,0,40}};
+  for(i = 0 ; i < MAX_COUNT_COOLING_TYPE ; i ++)
+  {
+	 if(coolingType == CtypeTL[i].coolingType ) 
+	 {
+		 idx = i;//Enum was possible to use in this line. But making this logic will avoid the stucture dependency on the enum order.
+	 }
   }
-  return inferBreach(temperatureInC, lowerLimit, upperLimit);
+  return inferBreach(temperatureInC, CtypeTL[idx].temp_lowerLimit, CtypeTL[idx].temp_upperLimit);
 }
 
 void checkAndAlert(
