@@ -42,7 +42,7 @@ TEST_CASE("infers the breach according to limits")
 			52,
 			0x00
 		}
-	}
+	};
 	for(idx =0;idx<3;idx++)
 	{
 		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
