@@ -25,12 +25,17 @@ BreachType classifyTemperatureBreach(CoolingType coolingType, double temperature
 
 typedef enum {
   TO_CONTROLLER,
-  TO_EMAIL
+  TO_EMAIL,
+  TO_CONTROLLER,
+#if(TEST_CODE_ACTIVE == YES)
+  TO_EMPTY_FUNCTION,
+#endif
+  MAX_NO_OF_TARGET
 } AlertTarget;
 
 typedef struct {
   CoolingType coolingType;
-  char brand[48];
+  const char brand[5];
 } BatteryCharacter;
 
 void checkAndAlert(
@@ -38,5 +43,7 @@ void checkAndAlert(
 
 void sendToController(BreachType breachType);
 void sendToEmail(BreachType breachType);
+void sendToConsole(BreachType breachType);
+void empty_Func(BreachType breachType);
 
-
+typedef void (*alertTarget_fcpt_a[MAX_NO_OF_TARGET])(BreachType);
