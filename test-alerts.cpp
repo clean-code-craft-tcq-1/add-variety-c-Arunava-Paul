@@ -15,7 +15,6 @@ TEST_CASE("infers the breach according to limits")
 	int idx = 0;
 	Test_Parameters_st test_param[3]=
 	{
-		/*******baterry brand xxxx test ************/
 		{
 			TO_CONTROLLER,
 			{
