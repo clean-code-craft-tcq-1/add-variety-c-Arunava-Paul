@@ -47,7 +47,7 @@ void checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, doubl
   alertTarget_fcpt_a alertTarget_fcpt[4] = {sendToController,sendToEmail,sendToConsole,empty_Func}; /*[4] questionable content. Need to be checked*/
   if(alertTarget_fcpt[alertTarget] != 0) //Sanity check
   {
-	(*alertTarget_fcpt[2])(breachType);
+	(*alertTarget_fcpt[0][2])(breachType);
   }
   else
   {
