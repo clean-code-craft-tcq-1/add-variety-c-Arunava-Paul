@@ -28,7 +28,7 @@ BreachType classifyTemperatureBreach( CoolingType coolingType, double temperatur
   const CoolingType_TempLimit_st CtypeTL[MAX_COUNT_COOLING_TYPE]={{PASSIVE_COOLING,0,35},{HI_ACTIVE_COOLING,0,45},{MED_ACTIVE_COOLING,0,40}};
   for(i = 0 ; i < MAX_COUNT_COOLING_TYPE ; i ++)
   {
-	 if(coolingType == CtypeTL[i].coolingType ) 
+	 if(coolingType == CtypeTL[i].clType ) 
 	 {
 		 idx = i;//Enum was possible to use in this line. But making this logic will avoid the stucture dependency on the enum order.
 	 }
@@ -43,7 +43,7 @@ void checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, doubl
   
 #endif
   /***************/
-  BreachType breachType = classifyTemperatureBreach( batteryChar.coolingType, temperatureInC );   
+  BreachType breachType = classifyTemperatureBreach( batteryChar.batt_coolingType, temperatureInC );   
   alertTarget_fcpt_a alertTarget_fcpt[MAX_NO_OF_TARGET] = {sendToController,sendToEmail,sendToConsole,empty_Func};
   if(alertTarget_fcpt[alertTarget] != 0) //Sanity check
   {
