@@ -46,4 +46,4 @@ void sendToEmail(BreachType breachType);
 void sendToConsole(BreachType breachType);
 void empty_Func(BreachType breachType);
 
-typedef void (*alertTarget_fcpt_a[MAX_NO_OF_TARGET])(BreachType);
+typedef void (*alertTarget_fcpt_a[4])(BreachType);
