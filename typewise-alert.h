@@ -24,7 +24,7 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
 
 typedef enum {
-  TO_CONTROLLER,
+  TO_CONTROLLER = 0,
   TO_EMAIL,
   TO_CONSOLE,
 #if(TEST_CODE_ACTIVE == YES)
