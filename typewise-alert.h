@@ -23,6 +23,7 @@ typedef struct
 BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
 
+#if 0 
 typedef enum {
   TO_CONTROLLER,
   TO_EMAIL,
@@ -30,6 +31,14 @@ typedef enum {
 #if(TEST_CODE_ACTIVE == YES)
   TO_EMPTY_FUNCTION,
 #endif
+  MAX_NO_OF_TARGET
+} AlertTarget;
+#endif
+typedef enum {
+  TO_CONTROLLER,
+  TO_EMAIL,
+  TO_CONSOLE,
+  TO_EMPTY_FUNCTION,
   MAX_NO_OF_TARGET
 } AlertTarget;
 
