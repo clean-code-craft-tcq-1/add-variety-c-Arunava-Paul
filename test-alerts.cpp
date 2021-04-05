@@ -43,7 +43,6 @@ TEST_CASE("infers the breach according to limits")
 			0x00
 		}
 	};
-	#if 0
 	for(idx =2;idx<3;idx++)
 	{
 		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
@@ -51,8 +50,6 @@ TEST_CASE("infers the breach according to limits")
 		REQUIRE(test_param[idx].GUI_RET != NO_OUTPUT);
 		test_param[idx].GUI_RET = NO_OUTPUT ; // reset the value
 	}
-	#endif
-	sendToEmail(TOO_LOW);
-	REQUIRE(Test_GUI != 0);
+	
   
 }
