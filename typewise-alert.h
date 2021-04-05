@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TYPEWISE_ALERT_H_
+#define TYPEWISE_ALERT_H_
 
 typedef enum {
   PASSIVE_COOLING=0,
@@ -56,3 +57,5 @@ void sendToConsole(BreachType breachType);
 void empty_Func(BreachType breachType);
 
 typedef void (*alertTarget_fcpt_a[MAX_NO_OF_TARGET])(BreachType);
+
+#endif
