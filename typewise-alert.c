@@ -44,10 +44,10 @@ void checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, doubl
 #endif
   /***************/
   BreachType breachType = classifyTemperatureBreach( batteryChar.batt_coolingType, temperatureInC );   
-  alertTarget_fcpt_a alertTarget_fcpt[MAX_NO_OF_TARGET] = {sendToController,sendToEmail,sendToConsole,empty_Func};
+  alertTarget_fcpt_a alertTarget_fcpt[4] = {sendToController,sendToEmail,sendToConsole,empty_Func}; /*[4] questionable content. Need to be checked*/
   if(alertTarget_fcpt[alertTarget] != 0) //Sanity check
   {
-	(*alertTarget_fcpt[0][1])(breachType);
+	(*alertTarget_fcpt[alertTarget])(breachType);
   }
   else
   {
