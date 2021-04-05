@@ -26,7 +26,7 @@ BreachType classifyTemperatureBreach(CoolingType coolingType, double temperature
 typedef enum {
   TO_CONTROLLER,
   TO_EMAIL,
-  TO_CONTROLLER,
+  TO_CONSOLE,
 #if(TEST_CODE_ACTIVE == YES)
   TO_EMPTY_FUNCTION,
 #endif
