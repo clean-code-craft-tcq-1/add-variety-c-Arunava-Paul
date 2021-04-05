@@ -47,7 +47,7 @@ void checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, doubl
   alertTarget_fcpt_a alertTarget_fcpt[MAX_NO_OF_TARGET] = {sendToController,sendToEmail,sendToConsole,empty_Func};
   if(alertTarget_fcpt[alertTarget] != 0) //Sanity check
   {
-	(*alertTarget_fcpt[alertTarget])(breachType);
+	(*alertTarget_fcpt[0][1])(breachType);
   }
   else
   {
