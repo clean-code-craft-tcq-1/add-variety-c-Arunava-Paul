@@ -15,7 +15,7 @@ typedef enum {
 
 typedef struct 
 {
-	CoolingType coolingType;
+	CoolingType clType;
 	double temp_lowerLimit;
 	double temp_upperLimit;
 }CoolingType_TempLimit_st;
@@ -24,9 +24,9 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit);
 BreachType classifyTemperatureBreach(CoolingType coolingType, double temperatureInC);
 
 typedef enum {
-  TO_CONTROLLER = 0,
+  TO_CONTROLLER,
   TO_EMAIL,
-  TO_CONSOLE,
+  TO_CONTROLLER,
 #if(TEST_CODE_ACTIVE == YES)
   TO_EMPTY_FUNCTION,
 #endif
@@ -34,7 +34,7 @@ typedef enum {
 } AlertTarget;
 
 typedef struct {
-  CoolingType coolingType;
+  CoolingType batt_coolingType;
   const char brand[5];
 } BatteryCharacter;
 
