@@ -1,6 +1,7 @@
 #include "typewise-alert.h"
 #include <stdio.h>
 #include "Test-alert.h"
+#include "string.h"
 
 #if(TEST_CODE_ACTIVE == YES)
 
