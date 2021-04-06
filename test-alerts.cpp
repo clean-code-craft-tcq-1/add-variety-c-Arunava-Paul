@@ -48,7 +48,7 @@ TEST_CASE("infers the breach according to limits")
 		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
 		test_param[idx].GUI_RET = Test_GUI ; 
 		REQUIRE(test_param[idx].GUI_RET != NO_OUTPUT);
-		test_param[idx].GUI_RET = NO_OUTPUT ; // reset the value
+		Test_GUI = NO_OUTPUT ; // reset the value
 	}
 	
   
