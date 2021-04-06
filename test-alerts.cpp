@@ -25,12 +25,12 @@ TEST_CASE("infers the breach according to limits")
 			0x00
 		},
 		{
-			TO_CONTROLLER,
+			TO_CONSOLE,
 			{
 				HI_ACTIVE_COOLING,
 				"xxxx",
 			},
-			52,
+			-10,
 			0x00
 		},
 		{
