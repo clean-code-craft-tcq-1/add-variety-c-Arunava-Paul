@@ -68,8 +68,8 @@ void sendToController(BreachType breachType) {
 
 void sendToEmail(BreachType breachType) {
   const char* recepient = "a.b@c.com";
-  const Email_Info_st email_info[MAX_BREACH_TYPE] = {{0},{"Hi, the temperature is too low"},{"Hi, the temperature is too high"}};
-  if((email_info[breachType]) != 0)
+  const Email_Info_st email_info[MAX_BREACH_TYPE] = {0,{"Hi, the temperature is too low"},{"Hi, the temperature is too high"}};
+  if(!strcmp(email_info[breachType].email_msg,0))
   {
 	printf("To: %s\n", recepient);
     printf("%s" , email_info[breachType]);
