@@ -13,7 +13,7 @@ int Test_GUI = NO_OUTPUT;
 TEST_CASE("infers the breach according to limits") 
 {
 	int idx = 0;
-	Test_Parameters_st test_param[3]=
+	Test_Parameters_st test_param[5]=
 	{
 		{
 			TO_CONTROLLER,
@@ -22,6 +22,7 @@ TEST_CASE("infers the breach according to limits")
 				"xxxx",
 			},
 			52,
+			CONTROLLER_OUTPUT,
 			0x00
 		},
 		{
@@ -31,6 +32,7 @@ TEST_CASE("infers the breach according to limits")
 				"xxxx",
 			},
 			-10,
+			CONSOLE_OUTPUT,
 			0x00
 		},
 		{
@@ -40,24 +42,9 @@ TEST_CASE("infers the breach according to limits")
 				"xxxx",
 			},
 			52,
+			EMAIL_OUTPUT,
 			0x00
-		}
-	};
-	for(idx =0; idx < (sizeof(test_param)/sizeof(test_param[0])) ; idx++)
-	{
-		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
-		test_param[idx].GUI_RET = Test_GUI ; 
-		REQUIRE(test_param[idx].GUI_RET != NO_OUTPUT);
-		Test_GUI = NO_OUTPUT ; // reset the value
-	}
-	
-  
-}
-TEST_CASE("Do not report breach if the temp is in limit") 
-{
-	int idx = 0;
-	Test_Parameters_st test_param[2]=
-	{
+		},
 		{
 			TO_CONTROLLER,
 			{
@@ -65,6 +52,7 @@ TEST_CASE("Do not report breach if the temp is in limit")
 				"xxxx",
 			},
 			22,
+			UNDEFINED_OUTPUT,
 			0x00
 		},
 		{
@@ -74,14 +62,16 @@ TEST_CASE("Do not report breach if the temp is in limit")
 				"xxxx",
 			},
 			10,
+			UNDEFINED_OUTPUT,
 			0x00
-		}	
+		}
 	};
-	for(idx =0 ; idx < (sizeof(test_param)/sizeof(test_param[0])) ; idx++)
+	for(idx =0; idx < (sizeof(test_param)/sizeof(test_param[0])) ; idx++)
 	{
 		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
 		test_param[idx].GUI_RET = Test_GUI ; 
-		REQUIRE(test_param[idx].GUI_RET == NO_OUTPUT);
+		REQUIRE(test_param[idx].GUI_RET_RECEIVED == test_param[idx].GUI_RET_EXPECTED);
 		Test_GUI = NO_OUTPUT ; // reset the value
-	}
+	}	  
 }
+
