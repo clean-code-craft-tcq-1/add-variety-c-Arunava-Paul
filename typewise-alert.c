@@ -42,11 +42,7 @@ BreachType classifyTemperatureBreach( CoolingType coolingType, double temperatur
 
 void checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC ) 
 {
-  /***test code***/
-#if(TEST_CODE_ACTIVE == YES)
-  
-#endif
-  /***************/
+
   BreachType breachType = classifyTemperatureBreach( batteryChar.batt_coolingType, temperatureInC );   
   alertTarget_fcpt_a alertTarget_fcpt[MAX_NO_OF_TARGET] = {sendToController,sendToEmail,sendToConsole,empty_Func}; /*[4] questionable content. Need to be checked*/
   if(breachType != NORMAL)//dont call unnecessarily
