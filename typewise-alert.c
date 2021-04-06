@@ -9,7 +9,8 @@ extern int Test_GUI;
 
 #endif
 
-BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
+BreachType inferBreach(double value, double lowerLimit, double upperLimit)
+{
   if(value < lowerLimit) 
   {
     return TOO_LOW;
@@ -19,7 +20,7 @@ BreachType inferBreach(double value, double lowerLimit, double upperLimit) {
     return TOO_HIGH;
   }
   return NORMAL;
-}
+}/*end of inferBreach*/
 
 BreachType classifyTemperatureBreach( CoolingType coolingType, double temperatureInC )
 {
@@ -35,7 +36,9 @@ BreachType classifyTemperatureBreach( CoolingType coolingType, double temperatur
 	 }
   }
   return inferBreach(temperatureInC, CtypeTL[idx].temp_lowerLimit, CtypeTL[idx].temp_upperLimit);
-}
+}/*end of classifyTemperatureBreach*/
+
+
 
 void checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC ) 
 {
@@ -80,24 +83,23 @@ void sendToEmail(BreachType breachType) {
   Test_GUI = EMAIL_OUTPUT;
 #endif
   /***************/
-}
+}/*end of sendToEmail*/
 
 void sendToConsole(BreachType breachType)
 {
-	const Console_info_st console_info[MAX_BREACH_TYPE] = {EMPTY_MSG,{"Hi, the temperature is too low"},{"Hi, the temperature is too high"}};
+  const Console_info_st console_info[MAX_BREACH_TYPE] = {EMPTY_MSG,{"Hi, the temperature is too low"},{"Hi, the temperature is too high"}};
   if(!strcmp(console_info[breachType].console_msg,EMPTY_MSG))
   {
     printf("%s" , console_info[breachType].console_msg);
-  }
-  
+  }  
   /***test code***/
 #if(TEST_CODE_ACTIVE == YES)
 	Test_GUI = CONSOLE_OUTPUT;
 #endif
   /****************/
-}
+}/*end of sendToConsole*/
 
 void empty_Func(BreachType breachType)
 {
 	/*No code simulation. No code/NO test code**/
-}
+}/*end of empty_Func*/
