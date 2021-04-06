@@ -69,7 +69,7 @@ TEST_CASE("infers the breach according to limits")
 	for(idx =0; idx < (sizeof(test_param)/sizeof(test_param[0])) ; idx++)
 	{
 		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
-		test_param[idx].GUI_RET = Test_GUI ; 
+		test_param[idx].GUI_RET_RECEIVED = Test_GUI ; 
 		REQUIRE(test_param[idx].GUI_RET_RECEIVED == test_param[idx].GUI_RET_EXPECTED);
 		Test_GUI = NO_OUTPUT ; // reset the value
 	}	  
