@@ -76,7 +76,7 @@ TEST_CASE("Do not report breach if the temp is in limit")
 			10,
 			0x00
 		}	
-	}
+	};
 	for(idx =0 ; idx < (sizeof(test_param)/sizeof(test_param[0])) ; idx++)
 	{
 		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
