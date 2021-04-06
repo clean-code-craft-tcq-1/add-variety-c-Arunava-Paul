@@ -72,7 +72,7 @@ void sendToEmail(BreachType breachType) {
   if(!strcmp(email_info[breachType].email_msg,0))
   {
 	printf("To: %s\n", recepient);
-    printf("%s" , email_info[breachType]);
+    printf("%s" , email_info[breachType].email_msg);
   }  
   /***test code***/
 #if(TEST_CODE_ACTIVE == YES)
