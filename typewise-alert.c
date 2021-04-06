@@ -84,16 +84,12 @@ void sendToEmail(BreachType breachType) {
 
 void sendToConsole(BreachType breachType)
 {
-	switch(breachType) {
-    case TOO_LOW:
-      printf("Hi, the temperature is too low\n");
-      break;
-    case TOO_HIGH:
-      printf("Hi, the temperature is too high\n");
-      break;
-    case NORMAL:
-      break;
+	const Console_info_st console_info[MAX_BREACH_TYPE] = {EMPTY_MSG,{"Hi, the temperature is too low"},{"Hi, the temperature is too high"}};
+  if(!strcmp(console_info[breachType].console_msg,EMPTY_MSG))
+  {
+    printf("%s" , console_info[breachType].console_msg);
   }
+  
   /***test code***/
 #if(TEST_CODE_ACTIVE == YES)
 	Test_GUI = CONSOLE_OUTPUT;
