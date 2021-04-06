@@ -56,6 +56,11 @@ void checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, doubl
   else
   {
 	//do nothing
+	    /***test code***/
+#if(TEST_CODE_ACTIVE == YES)
+  Test_GUI = UNDEFINED_OUTPUT;
+#endif
+  /***************/
     
   }
 }/*end of checkAndAlert*/
