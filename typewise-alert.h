@@ -11,8 +11,14 @@ typedef enum {
 typedef enum {
   NORMAL,
   TOO_LOW,
-  TOO_HIGH
+  TOO_HIGH,
+  MAX_BREACH_TYPE
 } BreachType;
+
+typedef struct
+{
+	char* email_msg;
+}Email_Info_st;
 
 typedef struct 
 {
