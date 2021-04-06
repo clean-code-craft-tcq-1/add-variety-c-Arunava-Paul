@@ -20,6 +20,12 @@ typedef struct
 	char* email_msg;
 }Email_Info_st;
 #define EMPTY_MSG "NIL"
+
+typedef struct
+{
+	char* console_msg;
+}Console_info_st;
+
 typedef struct 
 {
 	CoolingType clType;
