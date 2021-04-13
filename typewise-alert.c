@@ -2,12 +2,8 @@
 #include <stdio.h>
 #include "Test-alert.h"
 #include "string.h"
+#include "Alert_UI.h"
 
-#if(TEST_CODE_ACTIVE == YES)
-
-extern int Test_GUI;
-
-#endif
 
 BreachType inferBreach(double value, double lowerLimit, double upperLimit)
 {
@@ -42,62 +38,37 @@ BreachType classifyTemperatureBreach( CoolingType coolingType, double temperatur
 
 void checkAndAlert( AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC ) 
 {
-
   BreachType breachType = classifyTemperatureBreach( batteryChar.batt_coolingType, temperatureInC );   
   alertTarget_fcpt_a alertTarget_fcpt[MAX_NO_OF_TARGET] = {sendToController,sendToEmail,sendToConsole,empty_Func}; /*[4] questionable content. Need to be checked*/
-  if((alertTarget_fcpt[alertTarget] != 0) & (breachType != NORMAL))//dont call unnecessarily
+  if((alertTarget_fcpt[alertTarget] != 0) & (breachType != NORMAL)) //Sanity check
   {
 	(*alertTarget_fcpt[alertTarget])(breachType);
   }
-  else
-  {
-	//do nothing
-	    /***test code***/
-#if(TEST_CODE_ACTIVE == YES)
-  Test_GUI = UNDEFINED_OUTPUT;
-#endif
-  /***************/
-    
-  }
 }/*end of checkAndAlert*/
 
-void sendToController(BreachType breachType) {
+void sendToController(BreachType breachType) 
+{
   const unsigned short header = 0xfeed;
-  printf("%x : %x\n", header, breachType);
-  /***test code***/
-#if(TEST_CODE_ACTIVE == YES)
-  Test_GUI = CONTROLLER_OUTPUT;
-#endif
-  /***************/
+  ControllerTransmission(header , breachType);
 }
 
-void sendToEmail(BreachType breachType) {
+void sendToEmail(BreachType breachType) 
+{
   const char* recepient = "a.b@c.com";
   const Email_Info_st email_info[MAX_BREACH_TYPE] = {EMPTY_MSG,{"Hi, the temperature is too low"},{"Hi, the temperature is too high"}};
   if(strcmp(email_info[breachType].email_msg,EMPTY_MSG))
   {
-	printf("To: %s\n", recepient);
-    printf("%s" , email_info[breachType].email_msg);
-  }  
-  /***test code***/
-#if(TEST_CODE_ACTIVE == YES)
-  Test_GUI = EMAIL_OUTPUT;
-#endif
-  /***************/
+	CallEmailclient(recepient , email_info[breachType].email_msg);	
+  } 
 }/*end of sendToEmail*/
 
 void sendToConsole(BreachType breachType)
 {
   const Console_info_st console_info[MAX_BREACH_TYPE] = {EMPTY_MSG,{"Hi, the temperature is too low"},{"Hi, the temperature is too high"}};
-  if(strcmp(console_info[breachType].console_msg,EMPTY_MSG))
+  if(!strcmp(console_info[breachType].console_msg,EMPTY_MSG))
   {
-    printf("%s" , console_info[breachType].console_msg);
-  }  
-  /***test code***/
-#if(TEST_CODE_ACTIVE == YES)
-	Test_GUI = CONSOLE_OUTPUT;
-#endif
-  /****************/
+    ConsoleOutput(console_info[breachType].console_msg);
+  }
 }/*end of sendToConsole*/
 
 void empty_Func(BreachType breachType)
