@@ -45,10 +45,10 @@ TEST_CASE("infers the breach according to limits")
 }
 
 
-TEST_CASE("empty function test") 
-{
-	BatteryCharacter batt_ch = {HI_ACTIVE_COOLING , "xxxx"};
-	checkAndAlert(TO_EMPTY_FUNCTION ,batt_ch,50 );
-	REQUIRE(Test_GUI == NO_OUTPUT);
-	Test_GUI = NO_OUTPUT ; // reset the value
-}
+//TEST_CASE("empty function test") 
+//{
+//	BatteryCharacter batt_ch = {HI_ACTIVE_COOLING , "xxxx"};
+//	checkAndAlert(TO_EMPTY_FUNCTION ,batt_ch,50 );
+//	REQUIRE(Test_GUI == NO_OUTPUT);
+//	Test_GUI = NO_OUTPUT ; // reset the value
+//}
