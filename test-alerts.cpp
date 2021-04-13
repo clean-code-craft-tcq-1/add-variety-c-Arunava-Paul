@@ -3,6 +3,7 @@
 #include "test/catch.hpp"
 #include "typewise-alert.h"
 #include "Test-alert.h"
+#include <string.h>
 
 
 
