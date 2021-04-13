@@ -4,37 +4,15 @@
 #include "typewise-alert.h"
 #include "Test-alert.h"
 
-/***Global variables*****/
 
-int Test_GUI = NO_OUTPUT;
-
-/************************/
 
 TEST_CASE("infers the breach according to limits") 
 {
+	Email_Test_Buffer_st email_validate_buffer;
 	int idx = 0;
-	Test_Parameters_st test_param[5]=
+	EMAIL_Test_Parameters_st test_param[2]=
 	{
-		{
-			TO_CONTROLLER,
-			{
-				PASSIVE_COOLING,
-				"xxxx",
-			},
-			52,
-			CONTROLLER_OUTPUT,
-			0x00
-		},
-		{
-			TO_CONSOLE,
-			{
-				HI_ACTIVE_COOLING,
-				"xxxx",
-			},
-			-10,
-			CONSOLE_OUTPUT,
-			0x00
-		},
+		
 		{
 			TO_EMAIL,
 			{
@@ -42,36 +20,26 @@ TEST_CASE("infers the breach according to limits")
 				"xxxx",
 			},
 			52,
-			EMAIL_OUTPUT,
-			0x00
+			"Hi, the temperature is too high",
+			"a.b@c.com"
 		},
 		{
-			TO_CONTROLLER,
+			TO_EMAIL,
 			{
-				PASSIVE_COOLING,
+				MED_ACTIVE_COOLING,
 				"xxxx",
 			},
-			22,
-			UNDEFINED_OUTPUT,
-			0x00
-		},
-		{
-			TO_CONSOLE,
-			{
-				HI_ACTIVE_COOLING,
-				"xxxx",
-			},
-			10,
-			UNDEFINED_OUTPUT,
-			0x00
+			-55,
+			"Hi, the temperature is too low",
+			"a.b@c.com"
 		}
 	};
-	for(idx =0; idx < (sizeof(test_param)/sizeof(test_param[0])) ; idx++)
+	for(idx =0;idx<2;idx++)
 	{
 		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
-		test_param[idx].GUI_RET_RECEIVED = Test_GUI ; 
-		REQUIRE(test_param[idx].GUI_RET_RECEIVED == test_param[idx].GUI_RET_EXPECTED);
-		Test_GUI = NO_OUTPUT ; // reset the value
+		email_validate_buffer = TEST_emailCodeMock(0,0,CHECK);
+		REQUIRE( strcmp(test_param[idx].expected_email_add , email_validate_buffer.address) == 0);
+		REQUIRE( strcmp(test_param[idx].expected_email_msg , email_validate_buffer.e_msg ) == 0);
 	}	  
 }
 
