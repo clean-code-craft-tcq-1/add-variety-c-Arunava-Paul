@@ -4,17 +4,30 @@
 #define TEST_CODE_ACTIVE  YES
 
 
-#define EMAIL_OUTPUT		0xAA
-#define CONTROLLER_OUTPUT	0xBB
-#define CONSOLE_OUTPUT		0xCC
-#define UNDEFINED_OUTPUT	0xDD
-#define NO_OUTPUT		0x00
-
 typedef struct
 {
 	AlertTarget altr;
 	BatteryCharacter bat_ch;
 	double temp;
-	int GUI_RET_EXPECTED;
-	int GUI_RET_RECEIVED;
-}Test_Parameters_st;
+	char* expected_email_msg;
+	char* expected_email_add;
+}EMAIL_Test_Parameters_st;
+
+typedef struct
+{
+	char *address;
+	char *e_msg;
+}Email_Test_Buffer_st;
+
+Email_Test_Buffer_st TEST_emailCodeMock(char *email_add , char *email_msg , int purpose);
+
+typedef struct
+{
+	unsigned short hdr;
+	BreachType breach;
+}Controller_Test_Buffer_st;
+
+Controller_Test_Buffer_st TEST_controller(unsigned short header , BreachType breachType , int purpose);
+
+#define UPDATE 1
+#define CHECK  0
