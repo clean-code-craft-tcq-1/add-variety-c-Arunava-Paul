@@ -65,7 +65,7 @@ void sendToEmail(BreachType breachType)
 void sendToConsole(BreachType breachType)
 {
   const Console_info_st console_info[MAX_BREACH_TYPE] = {EMPTY_MSG,{"Hi, the temperature is too low"},{"Hi, the temperature is too high"}};
-  if(!strcmp(console_info[breachType].console_msg,EMPTY_MSG))
+  if(strcmp(console_info[breachType].console_msg,EMPTY_MSG))
   {
     ConsoleOutput(console_info[breachType].console_msg);
   }
