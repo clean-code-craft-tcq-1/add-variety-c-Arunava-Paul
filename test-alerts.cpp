@@ -7,7 +7,7 @@
 
 
 
-TEST_CASE("infers the breach according to limits") 
+TEST_CASE("infers the breach according to limits: EMAIL testing") 
 {
 	Email_Test_Buffer_st email_validate_buffer;
 	int idx = 0;
@@ -41,6 +41,43 @@ TEST_CASE("infers the breach according to limits")
 		email_validate_buffer = TEST_emailCodeMock(0,0,CHECK);
 		REQUIRE( strcmp(test_param[idx].expected_email_add , email_validate_buffer.address) == 0);
 		REQUIRE( strcmp(test_param[idx].expected_email_msg , email_validate_buffer.e_msg ) == 0);
+	}	  
+}
+
+TEST_CASE("infers the breach according to limits: controller testing") 
+{
+	Controller_Test_Buffer_st controller_validate_buffer;
+	int idx = 0;
+	CONTROLLER_Test_Parameters_st test_param[2]=
+	{
+		
+		{
+			TO_CONTROLLER,
+			{
+				MED_ACTIVE_COOLING,
+				"xxxx",
+			},
+			52,
+			0xfeed,
+			TOO_HIGH
+		},
+		{
+			TO_CONTROLLER,
+			{
+				MED_ACTIVE_COOLING,
+				"xxxx",
+			},
+			-55,
+			0xfeed,
+			TOO_LOW
+		}
+	};
+	for(idx =0;idx<(sizeof(test_param)/sizeof(test_param[0]));idx++)
+	{
+		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
+		controller_validate_buffer = TEST_controllerMock(0,0,CHECK);
+		REQUIRE( test_param[idx].expected_c_header == controller_validate_buffer.hdr );
+		REQUIRE( test_param[idx].expected_br_type ==  controller_validate_buffer.breach );
 	}	  
 }
 
