@@ -28,6 +28,7 @@ void ControllerTransmission(const unsigned short header , BreachType breachType)
 	/*Fake/simulation code*/
 	Fake_controllerTransmission(header,breachType);
 	/**********************/
+	TEST_controllerMock(header , breachType , UPDATE);
 #else
 	/*production code*/
 
@@ -43,6 +44,7 @@ void ConsoleOutput(char* msg)
 	/*Fake/simulation code*/
 	Fake_consoleOutput(msg);
 	/**********************/
+	TEST_consoleMock(msg , UPDATE);
 #else
 	/*production code*/
 
