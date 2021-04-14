@@ -75,7 +75,7 @@ TEST_CASE("infers the breach according to limits: controller testing")
 	for(idx =0;idx<(sizeof(test_param)/sizeof(test_param[0]));idx++)
 	{
 		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
-		controller_validate_buffer = TEST_controllerMock(0,0,CHECK);
+		controller_validate_buffer = TEST_controllerMock(0,(BreachType)0,CHECK);
 		REQUIRE( test_param[idx].expected_c_header == controller_validate_buffer.hdr );
 		REQUIRE( test_param[idx].expected_br_type ==  controller_validate_buffer.breach );
 	}	  
