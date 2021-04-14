@@ -12,7 +12,7 @@ void CallEmailclient(const char *recepient , char *msg)
 	/*Fake/simulation code*/
 	Fake_callEmailclient(recepient,msg);
 	/**********************/
-	TEST_emailCodeMock((char *)recepient,msg , UPDATE);
+	(void)TEST_emailCodeMock((char *)recepient,msg , UPDATE);
 #else
 	/*production code*/
 
@@ -28,7 +28,7 @@ void ControllerTransmission(const unsigned short header , BreachType breachType)
 	/*Fake/simulation code*/
 	Fake_controllerTransmission(header,breachType);
 	/**********************/
-	TEST_controllerMock(header , breachType , UPDATE);
+	(void)TEST_controllerMock(header , breachType , UPDATE);
 #else
 	/*production code*/
 
@@ -44,7 +44,7 @@ void ConsoleOutput(char* msg)
 	/*Fake/simulation code*/
 	Fake_consoleOutput(msg);
 	/**********************/
-	TEST_consoleMock(msg , UPDATE);
+	(void)TEST_consoleMock(msg , UPDATE);
 #else
 	/*production code*/
 
