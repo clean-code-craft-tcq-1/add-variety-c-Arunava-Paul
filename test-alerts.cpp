@@ -35,7 +35,7 @@ TEST_CASE("infers the breach according to limits")
 			"a.b@c.com"
 		}
 	};
-	for(idx =0;idx<2;idx++)
+	for(idx =0;idx<(sizeof(test_param)/sizeof(test_param[0]));idx++)
 	{
 		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
 		email_validate_buffer = TEST_emailCodeMock(0,0,CHECK);
