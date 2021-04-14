@@ -81,6 +81,39 @@ TEST_CASE("infers the breach according to limits: controller testing")
 	}	  
 }
 
+TEST_CASE("infers the breach according to limits: console testing") 
+{
+	Console_Test_Buffer_st console_validate_buffer;
+	int idx = 0;
+	CONSOLE_Test_Parameters_st test_param[2]=
+	{
+		
+		{
+			TO_CONSOLE,
+			{
+				MED_ACTIVE_COOLING,
+				"xxxx",
+			},
+			52,
+			"Hi, the temperature is too high"
+		},
+		{
+			TO_CONSOLE,
+			{
+				MED_ACTIVE_COOLING,
+				"xxxx",
+			},
+			-55,
+			"Hi, the temperature is too low"
+		}
+	};
+	for(idx =0;idx<(sizeof(test_param)/sizeof(test_param[0]));idx++)
+	{
+		checkAndAlert(test_param[idx].altr ,test_param[idx].bat_ch,test_param[idx].temp );
+		console_validate_buffer = TEST_consoleMock(0 , CHECK);
+		REQUIRE( strcmp( test_param[idx].expected_console_msg ,  console_validate_buffer.dis_msg ) == 0 );
+	}	  
+}
 
 //TEST_CASE("empty function test") 
 //{
