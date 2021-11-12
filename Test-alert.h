@@ -54,5 +54,5 @@ typedef struct
 Console_Test_Buffer_st TEST_consoleMock(char *msg , int purpose);
 
 
-#define UPDATE 1
-#define CHECK  0
+#define UPDATE 11
+#define CHECK  01
